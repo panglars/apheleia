@@ -117,6 +117,10 @@
     (prettier
      . ("apheleia-npx" "prettier" "--stdin-filepath" filepath
         (apheleia-formatters-js-indent "--use-tabs" "--tab-width")))
+    (prettier-astro
+     . ("apheleia-npx" "prettier" "--stdin-filepath" filepath
+        "--plugin=prettier-plugin-astro" "--parser=astro"
+        (apheleia-formatters-js-indent "--use-tabs" "--tab-width")))
     (prettier-css
      . ("apheleia-npx" "prettier" "--stdin-filepath" filepath
         "--parser=css"
@@ -307,6 +311,7 @@ rather than using this system."
 (defcustom apheleia-mode-alist
   '(;; Alphabetical please
     (asm-mode . asmfmt)
+    (astro-ts-mode . prettier-astro)
     (awk-mode . gawk)
     (bash-ts-mode . shfmt)
     (bazel-mode . buildifier)
@@ -571,9 +576,9 @@ NO-QUERY, and CONNECTION-TYPE."
   (ignore name noquery connection-type)
   (let* ((run-on-remote (and (eq apheleia-remote-algorithm 'remote)
                              remote))
-	 ;; Resolve the formatter executable's path to ensure it's
-	 ;; found
-	 (command (cons (executable-find (car command) run-on-remote) (cdr command)))
+	     ;; Resolve the formatter executable's path to ensure it's
+	     ;; found
+	     (command (cons (executable-find (car command) run-on-remote) (cdr command)))
          (stderr-file (apheleia--make-temp-file run-on-remote "apheleia"))
          (args
           (append
