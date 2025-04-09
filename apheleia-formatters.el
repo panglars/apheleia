@@ -190,6 +190,7 @@
                    "--fix" "--fix-only"
                    "--stdin-filename" filepath
                    "-"))
+    (scalafmt . ("scalafmt" "--stdout" filepath))
     (snakefmt . ("snakefmt"
                  (apheleia-formatters-fill-column "--line-length")
                  "-"))
@@ -380,6 +381,7 @@ rather than using this system."
     (rustic-mode . rustfmt)
     (rust-mode . rustfmt)
     (rust-ts-mode . rustfmt)
+    (scala-mode . scalafmt)
     (snakemake-mode . snakefmt)
     (scss-mode . prettier-scss)
     (sql-mode . pgformatter)
@@ -571,9 +573,9 @@ NO-QUERY, and CONNECTION-TYPE."
   (ignore name noquery connection-type)
   (let* ((run-on-remote (and (eq apheleia-remote-algorithm 'remote)
                              remote))
-	 ;; Resolve the formatter executable's path to ensure it's
-	 ;; found
-	 (command (cons (executable-find (car command) run-on-remote) (cdr command)))
+	     ;; Resolve the formatter executable's path to ensure it's
+	     ;; found
+	     (command (cons (executable-find (car command) run-on-remote) (cdr command)))
          (stderr-file (apheleia--make-temp-file run-on-remote "apheleia"))
          (args
           (append
