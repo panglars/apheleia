@@ -194,6 +194,7 @@
                    "--fix" "--fix-only"
                    "--stdin-filename" filepath
                    "-"))
+    (scalafmt . ("scalafmt" "--stdout" filepath))
     (snakefmt . ("snakefmt"
                  (apheleia-formatters-fill-column "--line-length")
                  "-"))
@@ -385,6 +386,7 @@ rather than using this system."
     (rustic-mode . rustfmt)
     (rust-mode . rustfmt)
     (rust-ts-mode . rustfmt)
+    (scala-mode . scalafmt)
     (snakemake-mode . snakefmt)
     (scss-mode . prettier-scss)
     (sql-mode . pgformatter)
