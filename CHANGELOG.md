@@ -5,13 +5,26 @@ The format is based on [Keep a Changelog].
 
 ## Unreleased
 ### Bugs fixed
+* A formatter that adds indentation while point is at the end of the
+  line would sometimes leave point at the wrong position ([#362]).
+
+## 4.4.1 (released 2025-05-13)
+### Enhancements
+* Black will respect configuration in `pyproject.toml` when run via
+  Apheleia.
+
+### Bugs fixed
 * A formatter that moves a line to the top of the file would sometimes
   place it as the second line instead ([#299]).
 * Fix invoking the diff command on Windows by always passing the --text
-flag
+  flag.
 
 ### Formatters
 * Format Bazel files according to their type
+* `nomad fmt` official formatter for
+  [HashiCorp Nomad](https://developer.hashicorp.com/nomad) ([#361]).
+
+[#299]: https://github.com/radian-software/apheleia/issues/299
 
 ## 4.4 (released 2025-02-12)
 ### Bugs fixed
